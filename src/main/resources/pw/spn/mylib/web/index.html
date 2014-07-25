@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MyLib</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//localhost:${port}/css/styles.css">
+<link rel="stylesheet"
+	href="//localhost:${port}/css/custom-theme/jquery-ui.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<input type="text" class="form-control" id="search"
+					placeholder="Искать книги" autocomplete="off">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-tabs nav-justified">
+					<li class="active"><a href="#gtr" data-toggle="tab" id="agtr">Хочу
+							прочитать (0)</a></li>
+					<li><a href="#rng" data-toggle="tab" id="arng">Читаю (0)</a></li>
+					<li><a href="#r" data-toggle="tab" id="ar">Прочитал (0)</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="gtr"></div>
+					<div class="tab-pane" id="rng"></div>
+					<div class="tab-pane" id="r"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="//localhost:${port}/js/mylib.js"></script>
+</body>
+</html>
