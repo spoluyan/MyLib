@@ -2,10 +2,13 @@ package pw.spn.mylib.domain;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.StringUtils;
 
 public class Author implements Serializable {
     private static final long serialVersionUID = 2376148192891746322L;
+
+    private static final String EMPTY = "";
+    private static final String SPACE = " ";
 
     private final String firstName;
     private final String middleName;
@@ -19,10 +22,8 @@ public class Author implements Serializable {
 
     @Override
     public String toString() {
-        return new StringBuilder().append(firstName)
-                .append(StringUtils.isEmpty(firstName) ? StringUtils.EMPTY : StringUtils.SPACE).append(middleName)
-                .append(StringUtils.isEmpty(middleName) ? StringUtils.EMPTY : StringUtils.SPACE).append(lastName)
-                .toString();
+        return new StringBuilder().append(firstName).append(StringUtils.isEmpty(firstName) ? EMPTY : SPACE)
+                .append(middleName).append(StringUtils.isEmpty(middleName) ? EMPTY : SPACE).append(lastName).toString();
     }
 
     @Override
