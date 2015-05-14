@@ -6,6 +6,9 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import pw.spn.mylib.service.CatalogService;
 import pw.spn.mylib.ui.CurrentState;
@@ -26,8 +29,24 @@ public class MyLib extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setMinWidth(1170);
         primaryStage.setTitle("MyLib v" + AppVersion.getVersion());
+        primaryStage.setMaximized(true);
+        primaryStage.setFullScreenExitHint(Messages.fullScreenHint());
+        Image applicationIcon = new Image(getClass().getResourceAsStream("icon.png"));
+        primaryStage.getIcons().add(applicationIcon);
+
+        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+            if (e.getCode() == KeyCode.F11) {
+                if (primaryStage.isFullScreen()) {
+                    primaryStage.setFullScreen(false);
+                } else {
+                    primaryStage.setFullScreen(true);
+                }
+            }
+        });
+
         Scene scene = new Scene(new RootPane(), Config.getConfig().getAppWidth(), Config.getConfig().getAppHeight());
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
         MyLib.scene = scene;
         primaryStage.setScene(scene);
         primaryStage.show();

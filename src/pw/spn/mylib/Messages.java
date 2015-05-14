@@ -16,6 +16,7 @@ public final class Messages {
     private String del;
     private String loading;
     private String search;
+    private String fullScreenHint;
 
     private Messages() {
         loadMessages();
@@ -49,6 +50,7 @@ public final class Messages {
         del = properties.getProperty("del");
         loading = properties.getProperty("loading");
         search = properties.getProperty("search");
+        fullScreenHint = properties.getProperty("full-screen-exit-hint");
     }
 
     public static String read() {
@@ -73,5 +75,9 @@ public final class Messages {
 
     public static String search() {
         return messages.search;
+    }
+
+    public static String fullScreenHint() {
+        return messages.fullScreenHint;
     }
 }
