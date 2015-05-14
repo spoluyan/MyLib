@@ -1,31 +1,24 @@
 package pw.spn.mylib.util;
 
-import java.util.concurrent.TimeUnit;
-
-import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import pw.spn.mylib.Messages;
 import pw.spn.mylib.MyLib;
 import pw.spn.mylib.service.CatalogService;
 import pw.spn.mylib.ui.CurrentState;
 import pw.spn.mylib.ui.book.BooksTable;
 import pw.spn.mylib.ui.menu.MenuButton;
-import pw.spn.mylib.ui.search.SearchBar;
-import pw.spn.mylib.ui.search.SearchResultsPane;
+import pw.spn.mylib.ui.menu.SearchButton;
 
 public final class UIUtil {
     private UIUtil() {
     }
 
     public static void enableSearch() {
-        SearchBar search = (SearchBar) MyLib.getScene().lookup("#search");
+        SearchButton search = (SearchButton) MyLib.getScene().lookup("#search-btn");
         search.setDisable(false);
-        search.setPromptText(Messages.search());
+        search.setText(Messages.search());
     }
 
     public static void updateMenuButtonsLabels() {
@@ -48,7 +41,6 @@ public final class UIUtil {
     }
 
     public static void refreshBooks() {
-        removeSearchResultPane();
         updateMenuButtonsLabels();
         getBooksTable().refresh();
     }
@@ -58,33 +50,6 @@ public final class UIUtil {
         if (view != null) {
             view.setImage(image);
         }
-    }
-
-    public static void updateSearchResultPane(SearchResultsPane searchResultsPane) {
-        removeSearchResultPane();
-        BorderPane root = (BorderPane) MyLib.getScene().getRoot();
-        root.getChildren().add(searchResultsPane);
-    }
-
-    public static void removeSearchResultPane() {
-        BorderPane root = (BorderPane) MyLib.getScene().getRoot();
-        Node currentSearchResults = root.lookup("#search-results");
-        if (currentSearchResults != null) {
-            root.getChildren().remove(currentSearchResults);
-        }
-    }
-
-    public static void removeSearchResultPaneWithDelay() {
-        Task<Void> task = new Task<Void>() {
-
-            @Override
-            protected Void call() throws Exception {
-                Thread.sleep(TimeUnit.MILLISECONDS.toMillis(300));
-                Platform.runLater(() -> removeSearchResultPane());
-                return null;
-            }
-        };
-        TaskUtil.runTask(task);
     }
 
     private static BooksTable getBooksTable() {

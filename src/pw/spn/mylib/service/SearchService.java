@@ -1,6 +1,7 @@
 package pw.spn.mylib.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -8,23 +9,27 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.util.Pair;
 import pw.spn.mylib.Config;
 import pw.spn.mylib.domain.Book;
+import pw.spn.mylib.util.StringUtil;
 
 public class SearchService {
     private static final SearchService INSTANCE = new SearchService();
 
     private int searchLimit;
+    private Pair<String, List<Book>> lastSearch;
 
     private SearchService() {
         searchLimit = Config.getConfig().getSearchLimit();
+        lastSearch = new Pair<>(StringUtil.EMPTY, Collections.emptyList());
     }
 
     public static SearchService getInstance() {
         return INSTANCE;
     }
 
-    public List<Book> searchBooks(String query) {
+    public void searchBooks(String query) {
         CatalogService catalogService = CatalogService.getInstance();
         Set<Book> remoteBookLibrary = catalogService.getRemoteLibrary();
         Set<Book> localLibrary = catalogService.getLocalLibrary();
@@ -54,7 +59,11 @@ public class SearchService {
         if (result.size() < searchLimit) {
             searchMap.get(2).forEach(b -> addBook(result, b, localLibrary));
         }
-        return result;
+        lastSearch = new Pair<>(query, result);
+    }
+
+    public Pair<String, List<Book>> getLastSearch() {
+        return lastSearch;
     }
 
     private void addBook(List<Book> result, Book b, Set<Book> localLibrary) {

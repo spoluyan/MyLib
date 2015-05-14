@@ -6,6 +6,7 @@ import pw.spn.mylib.ui.book.BooksTable;
 import pw.spn.mylib.ui.menu.AlreadyReadButton;
 import pw.spn.mylib.ui.menu.GoingToReadButton;
 import pw.spn.mylib.ui.menu.ReadingButton;
+import pw.spn.mylib.ui.menu.SearchButton;
 
 public class ContentPane extends GridPane {
     public ContentPane() {
@@ -14,10 +15,11 @@ public class ContentPane extends GridPane {
         add(new GoingToReadButton(), 0, 0);
         add(new ReadingButton(), 1, 0);
         add(new AlreadyReadButton(), 2, 0);
+        add(new SearchButton(), 3, 0);
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setId("scroll");
         scrollPane.setContent(new BooksTable());
-        add(scrollPane, 0, 1, 3, 1);
+        add(scrollPane, 0, 1, 4, 1);
     }
 }

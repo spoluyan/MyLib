@@ -22,7 +22,6 @@ public abstract class BookStatusButton extends Button {
     }
 
     private void onClick(MouseEvent e) {
-        UIUtil.removeSearchResultPane();
         CatalogService.getInstance().updateBookStatus(id, getBookStatus());
         UIUtil.refreshBooks();
     }

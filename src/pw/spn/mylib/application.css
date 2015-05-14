@@ -3,8 +3,8 @@
 }
 
 #search {
-	-fx-max-width: 1170;
-	-fx-pref-width: 1170;
+	-fx-max-width: 1150;
+	-fx-pref-width: 1150;
 	-fx-padding: 10;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .menu-button {
-	-fx-pref-width: 390;
+	-fx-pref-width: 292.5;
 	-fx-padding: 10;
 	-fx-background-color: rgb(255, 255, 255);
 	-fx-text-fill: rgb(66, 139, 202);
