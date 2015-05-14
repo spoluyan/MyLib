@@ -13,14 +13,15 @@ import pw.spn.mylib.util.StringUtil;
 public final class Config {
     private static final Config INSTANCE = new Config();
 
-    private Properties properties;
+    private final Properties properties;
 
-    private double appWidth;
-    private double appHeight;
-    private String localLibraryFileName;
-    private Set<String> acceptedLanguages;
-    private String appLanguage;
-    private int searchLimit;
+    private final double appWidth;
+    private final double appHeight;
+    private final String localLibraryFileName;
+    private final Set<String> acceptedLanguages;
+    private final String appLanguage;
+    private final int searchLimit;
+    private final int minSearchQueryLength;
 
     private Config() {
         properties = loadPropertiesFromFile();
@@ -30,7 +31,8 @@ public final class Config {
         localLibraryFileName = properties.getProperty("local.library.file", "/tmp/mylib.ser");
         acceptedLanguages = loadSetProperty("accepted-languages", ",be,en,ru,uk");
         appLanguage = properties.getProperty("app.lang", "ru");
-        searchLimit = loadIntProperty("search-limit", 20);
+        searchLimit = loadIntProperty("search.limit", 20);
+        minSearchQueryLength = loadIntProperty("search.min-query-length", 3);
     }
 
     private Set<String> loadSetProperty(String propertyKey, String defaultValue) {
@@ -108,5 +110,9 @@ public final class Config {
 
     public int getSearchLimit() {
         return searchLimit;
+    }
+
+    public int getMinSearchQueryLength() {
+        return minSearchQueryLength;
     }
 }
