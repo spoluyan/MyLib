@@ -71,7 +71,7 @@ public class ParserService {
             ex.printStackTrace();
         }
         try (FileInputStream fis = new FileInputStream(tempFile);) {
-            return IOUtils.readLines(fis);
+            return IOUtils.readLines(fis, "UTF-8");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
