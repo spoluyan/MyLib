@@ -28,27 +28,8 @@ public class MyLib extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setMinWidth(1170);
-        primaryStage.setTitle("MyLib v" + AppVersion.getVersion());
-        primaryStage.setMaximized(true);
-        primaryStage.setFullScreenExitHint(BundleUtil.getMessage("full-screen-exit-hint"));
-        Image applicationIcon = new Image(getClass().getResourceAsStream("icon.png"));
-        primaryStage.getIcons().add(applicationIcon);
-
-        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
-            if (e.getCode() == KeyCode.F11) {
-                if (primaryStage.isFullScreen()) {
-                    primaryStage.setFullScreen(false);
-                } else {
-                    primaryStage.setFullScreen(true);
-                }
-            }
-        });
-
-        Scene scene = new Scene(new RootPane(), Config.getConfig().getAppWidth(), Config.getConfig().getAppHeight());
-        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-        MyLib.scene = scene;
+        setUpPrimaryState(primaryStage);
+        MyLib.scene = buildUI();
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -65,6 +46,31 @@ public class MyLib extends Application {
         TaskUtil.runTask(task);
         UIUtil.updateMenuButtonsLabels();
         UIUtil.showBooks(CurrentState.GOING_TO_READ);
+    }
+
+    private Scene buildUI() {
+        Scene scene = new Scene(new RootPane(), Config.getConfig().getAppWidth(), Config.getConfig().getAppHeight());
+        scene.getStylesheets().add(getClass().getResource("ui/application.css").toExternalForm());
+        return scene;
+    }
+
+    private void setUpPrimaryState(Stage primaryStage) {
+        primaryStage.setMinWidth(1170);
+        primaryStage.setTitle("MyLib v" + AppVersion.getVersion());
+        primaryStage.setMaximized(true);
+        primaryStage.setFullScreenExitHint(BundleUtil.getMessage("full-screen-exit-hint"));
+        Image applicationIcon = new Image(getClass().getResourceAsStream("icon.png"));
+        primaryStage.getIcons().add(applicationIcon);
+
+        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+            if (e.getCode() == KeyCode.F11) {
+                if (primaryStage.isFullScreen()) {
+                    primaryStage.setFullScreen(false);
+                } else {
+                    primaryStage.setFullScreen(true);
+                }
+            }
+        });
     }
 
     public static void openBrowser(String uri) {
