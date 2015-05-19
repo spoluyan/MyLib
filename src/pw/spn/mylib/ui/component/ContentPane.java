@@ -1,12 +1,12 @@
-package pw.spn.mylib.ui;
+package pw.spn.mylib.ui.component;
 
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
-import pw.spn.mylib.ui.book.BooksTable;
-import pw.spn.mylib.ui.menu.AlreadyReadButton;
-import pw.spn.mylib.ui.menu.GoingToReadButton;
-import pw.spn.mylib.ui.menu.ReadingButton;
-import pw.spn.mylib.ui.menu.SearchButton;
+import pw.spn.mylib.ui.component.book.BooksTable;
+import pw.spn.mylib.ui.component.menu.AlreadyReadButton;
+import pw.spn.mylib.ui.component.menu.GoingToReadButton;
+import pw.spn.mylib.ui.component.menu.ReadingButton;
+import pw.spn.mylib.ui.component.menu.SearchButton;
 
 public class ContentPane extends GridPane {
     public ContentPane() {

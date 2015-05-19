@@ -5,10 +5,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import pw.spn.mylib.MyLib;
 import pw.spn.mylib.service.CatalogService;
-import pw.spn.mylib.ui.CurrentState;
-import pw.spn.mylib.ui.book.BooksTable;
-import pw.spn.mylib.ui.menu.MenuButton;
-import pw.spn.mylib.ui.menu.SearchButton;
+import pw.spn.mylib.ui.component.CurrentState;
+import pw.spn.mylib.ui.component.book.BooksTable;
+import pw.spn.mylib.ui.component.menu.MenuButton;
+import pw.spn.mylib.ui.component.menu.SearchButton;
 
 public final class UIUtil {
     private UIUtil() {

@@ -1,4 +1,4 @@
-package pw.spn.mylib.ui.book;
+package pw.spn.mylib.ui.component.book;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

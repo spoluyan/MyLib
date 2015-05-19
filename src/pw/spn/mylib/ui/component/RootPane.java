@@ -1,4 +1,4 @@
-package pw.spn.mylib.ui;
+package pw.spn.mylib.ui.component;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

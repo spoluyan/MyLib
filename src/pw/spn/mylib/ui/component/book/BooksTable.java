@@ -1,4 +1,4 @@
-package pw.spn.mylib.ui.book;
+package pw.spn.mylib.ui.component.book;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,8 +12,8 @@ import javafx.util.Pair;
 import pw.spn.mylib.domain.Book;
 import pw.spn.mylib.service.CatalogService;
 import pw.spn.mylib.service.SearchService;
-import pw.spn.mylib.ui.CurrentState;
-import pw.spn.mylib.ui.search.SearchBar;
+import pw.spn.mylib.ui.component.CurrentState;
+import pw.spn.mylib.ui.component.search.SearchBar;
 
 public class BooksTable extends GridPane {
     private CurrentState currentState;

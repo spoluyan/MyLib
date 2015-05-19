@@ -1,4 +1,4 @@
-package pw.spn.mylib.ui.menu;
+package pw.spn.mylib.ui.component.menu;
 
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;

@@ -1,9 +1,9 @@
-package pw.spn.mylib.ui.search;
+package pw.spn.mylib.ui.component.search;
 
 import javafx.scene.control.TextField;
 import pw.spn.mylib.Config;
 import pw.spn.mylib.service.SearchService;
-import pw.spn.mylib.ui.CurrentState;
+import pw.spn.mylib.ui.component.CurrentState;
 import pw.spn.mylib.util.BundleUtil;
 import pw.spn.mylib.util.UIUtil;
 

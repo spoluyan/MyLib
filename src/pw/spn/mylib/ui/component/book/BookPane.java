@@ -1,4 +1,4 @@
-package pw.spn.mylib.ui.book;
+package pw.spn.mylib.ui.component.book;
 
 import java.util.HashSet;
 import java.util.Set;

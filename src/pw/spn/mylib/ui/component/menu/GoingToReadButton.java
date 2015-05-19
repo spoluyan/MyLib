@@ -1,6 +1,6 @@
-package pw.spn.mylib.ui.menu;
+package pw.spn.mylib.ui.component.menu;
 
-import pw.spn.mylib.ui.CurrentState;
+import pw.spn.mylib.ui.component.CurrentState;
 import pw.spn.mylib.util.BundleUtil;
 import pw.spn.mylib.util.UIUtil;
 
