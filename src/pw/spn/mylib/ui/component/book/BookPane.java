@@ -16,6 +16,7 @@ import pw.spn.mylib.MyLib;
 import pw.spn.mylib.domain.Author;
 import pw.spn.mylib.domain.Book;
 import pw.spn.mylib.domain.BookStatus;
+import pw.spn.mylib.task.LoadCoverTask;
 import pw.spn.mylib.ui.book.status.AlreadyReadBookStatusButton;
 import pw.spn.mylib.ui.book.status.GoingToReadBookStatusButton;
 import pw.spn.mylib.ui.book.status.NoStatusBookStatusButton;
@@ -93,8 +94,7 @@ public class BookPane extends GridPane {
     private ImageView buildImage(String cover) {
         Image image = new Image(getClass().getResourceAsStream("default-cover.png"));
         if (cover != null) {
-            LoadCoverTask task = new LoadCoverTask(getId(), cover);
-            TaskUtil.runTask(task);
+            TaskUtil.runTask(new LoadCoverTask(getId(), cover));
         }
         ImageView view = new ImageView(image);
         view.setId("cover-" + getId());

@@ -3,14 +3,12 @@ package pw.spn.mylib;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import pw.spn.mylib.service.CatalogService;
+import pw.spn.mylib.task.LoadRemoteCatalogTask;
 import pw.spn.mylib.ui.component.CurrentState;
 import pw.spn.mylib.ui.component.RootPane;
 import pw.spn.mylib.util.BundleUtil;
@@ -33,17 +31,7 @@ public class MyLib extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        Task<Void> task = new Task<Void>() {
-
-            @Override
-            protected Void call() throws Exception {
-                CatalogService.getInstance().getRemoteLibrary();
-                Platform.runLater(() -> UIUtil.enableSearch());
-                return null;
-            }
-
-        };
-        TaskUtil.runTask(task);
+        TaskUtil.runTask(new LoadRemoteCatalogTask());
         UIUtil.updateMenuButtonsLabels();
         UIUtil.showBooks(CurrentState.GOING_TO_READ);
     }
