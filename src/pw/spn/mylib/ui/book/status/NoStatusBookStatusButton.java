@@ -1,11 +1,11 @@
 package pw.spn.mylib.ui.book.status;
 
-import pw.spn.mylib.Messages;
 import pw.spn.mylib.domain.BookStatus;
+import pw.spn.mylib.util.BundleUtil;
 
 public class NoStatusBookStatusButton extends BookStatusButton {
     public NoStatusBookStatusButton(long id) {
-        super(id, Messages.del());
+        super(id, BundleUtil.getMessage("del"));
     }
 
     @Override

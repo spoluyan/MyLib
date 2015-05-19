@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import pw.spn.mylib.service.CatalogService;
 import pw.spn.mylib.ui.CurrentState;
 import pw.spn.mylib.ui.RootPane;
+import pw.spn.mylib.util.BundleUtil;
 import pw.spn.mylib.util.TaskUtil;
 import pw.spn.mylib.util.UIUtil;
 
@@ -30,7 +31,7 @@ public class MyLib extends Application {
         primaryStage.setMinWidth(1170);
         primaryStage.setTitle("MyLib v" + AppVersion.getVersion());
         primaryStage.setMaximized(true);
-        primaryStage.setFullScreenExitHint(Messages.fullScreenHint());
+        primaryStage.setFullScreenExitHint(BundleUtil.getMessage("full-screen-exit-hint"));
         Image applicationIcon = new Image(getClass().getResourceAsStream("icon.png"));
         primaryStage.getIcons().add(applicationIcon);
 

@@ -2,15 +2,15 @@ package pw.spn.mylib.ui.search;
 
 import javafx.scene.control.TextField;
 import pw.spn.mylib.Config;
-import pw.spn.mylib.Messages;
 import pw.spn.mylib.service.SearchService;
 import pw.spn.mylib.ui.CurrentState;
+import pw.spn.mylib.util.BundleUtil;
 import pw.spn.mylib.util.UIUtil;
 
 public class SearchBar extends TextField {
     public SearchBar(String text) {
         setId("search");
-        setPromptText(Messages.search());
+        setPromptText(BundleUtil.getMessage("search"));
         setText(text);
         addEventsHandlers();
 

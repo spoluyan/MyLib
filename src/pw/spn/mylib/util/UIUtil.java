@@ -3,7 +3,6 @@ package pw.spn.mylib.util;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import pw.spn.mylib.Messages;
 import pw.spn.mylib.MyLib;
 import pw.spn.mylib.service.CatalogService;
 import pw.spn.mylib.ui.CurrentState;
@@ -18,7 +17,7 @@ public final class UIUtil {
     public static void enableSearch() {
         SearchButton search = (SearchButton) MyLib.getScene().lookup("#search-btn");
         search.setDisable(false);
-        search.setText(Messages.search());
+        search.setText(BundleUtil.getMessage("search"));
     }
 
     public static void updateMenuButtonsLabels() {
@@ -26,7 +25,7 @@ public final class UIUtil {
         long goingToReadBooks = catalogService.getGoingToReadBooks().size();
         long readingBooks = catalogService.getReadingBooks().size();
         long readBooks = catalogService.getReadBooks().size();
-        
+
         MenuButton goingToReadButton = getMenuButtonById(MyLib.getScene(), "#going-to-read-btn");
         MenuButton readingButton = getMenuButtonById(MyLib.getScene(), "#reading-btn");
         MenuButton readButton = getMenuButtonById(MyLib.getScene(), "#read-btn");
