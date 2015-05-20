@@ -3,41 +3,33 @@ package pw.spn.mylib;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import pw.spn.mylib.task.LoadRemoteCatalogTask;
-import pw.spn.mylib.ui.component.CurrentState;
-import pw.spn.mylib.ui.component.RootPane;
 import pw.spn.mylib.util.BundleUtil;
-import pw.spn.mylib.util.TaskUtil;
-import pw.spn.mylib.util.UIUtil;
 
 public class MyLib extends Application {
     private static MyLib application;
-
-    private static Scene scene;
 
     public MyLib() {
         application = this;
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         setUpPrimaryState(primaryStage);
-        MyLib.scene = buildUI();
-        primaryStage.setScene(scene);
+        primaryStage.setScene(buildUI());
         primaryStage.show();
-
-        TaskUtil.runTask(new LoadRemoteCatalogTask());
-        UIUtil.updateMenuButtonsLabels();
-        UIUtil.showBooks(CurrentState.GOING_TO_READ);
     }
 
-    private Scene buildUI() {
-        Scene scene = new Scene(new RootPane(), Config.getConfig().getAppWidth(), Config.getConfig().getAppHeight());
+    private Scene buildUI() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/MyLib.fxml"), BundleUtil.getBundle());
+        BorderPane root = loader.<BorderPane> load();
+        Scene scene = new Scene(root, Config.getConfig().getAppWidth(), Config.getConfig().getAppHeight());
         scene.getStylesheets().add(getClass().getResource("ui/application.css").toExternalForm());
         return scene;
     }
@@ -63,10 +55,6 @@ public class MyLib extends Application {
 
     public static void openBrowser(String uri) {
         application.getHostServices().showDocument(uri);
-    }
-
-    public static Scene getScene() {
-        return scene;
     }
 
     public static void main(String[] args) throws IOException {

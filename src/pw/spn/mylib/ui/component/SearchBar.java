@@ -1,14 +1,17 @@
-package pw.spn.mylib.ui.component.search;
+package pw.spn.mylib.ui.component;
 
 import javafx.scene.control.TextField;
 import pw.spn.mylib.Config;
 import pw.spn.mylib.service.SearchService;
-import pw.spn.mylib.ui.component.CurrentState;
+import pw.spn.mylib.ui.State;
+import pw.spn.mylib.ui.controller.BooksController;
 import pw.spn.mylib.util.BundleUtil;
-import pw.spn.mylib.util.UIUtil;
 
 public class SearchBar extends TextField {
-    public SearchBar(String text) {
+    private BooksController booksController;
+
+    public SearchBar(BooksController booksController, String text) {
+        this.booksController = booksController;
         setId("search");
         setPromptText(BundleUtil.getMessage("search"));
         setText(text);
@@ -30,6 +33,6 @@ public class SearchBar extends TextField {
     }
 
     private void drawResult() {
-        UIUtil.showBooks(CurrentState.SEARCH);
+        booksController.refresh(State.SEARCH);
     }
 }

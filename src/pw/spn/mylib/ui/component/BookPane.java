@@ -1,4 +1,4 @@
-package pw.spn.mylib.ui.component.book;
+package pw.spn.mylib.ui.component;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,6 +6,7 @@ import java.util.Set;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -16,17 +17,18 @@ import pw.spn.mylib.MyLib;
 import pw.spn.mylib.domain.Author;
 import pw.spn.mylib.domain.Book;
 import pw.spn.mylib.domain.BookStatus;
+import pw.spn.mylib.service.CatalogService;
 import pw.spn.mylib.task.LoadCoverTask;
-import pw.spn.mylib.ui.book.status.AlreadyReadBookStatusButton;
-import pw.spn.mylib.ui.book.status.GoingToReadBookStatusButton;
-import pw.spn.mylib.ui.book.status.NoStatusBookStatusButton;
-import pw.spn.mylib.ui.book.status.ReadingBookStatusButton;
+import pw.spn.mylib.ui.controller.BooksController;
 import pw.spn.mylib.util.TaskUtil;
 
 public class BookPane extends GridPane {
     private static final String BOOK_URL = "http://flibusta.net/b/";
 
-    public BookPane(Book book, boolean showCover) {
+    private BooksController booksController;
+
+    public BookPane(BooksController booksController, Book book, boolean showCover) {
+        this.booksController = booksController;
         setId(String.valueOf(book.getFlibustaID()));
         getStyleClass().add("book");
 
@@ -61,46 +63,41 @@ public class BookPane extends GridPane {
     }
 
     private HBox generateButtons(long id, BookStatus bookStatus) {
-        HBox buttons = new HBox();
-        buttons.setSpacing(10);
-        buttons.getStyleClass().add("status-buttons");
-
-        AlreadyReadBookStatusButton alreadyReadBookStatusButton = new AlreadyReadBookStatusButton(id);
-        ReadingBookStatusButton readingBookStatusButton = new ReadingBookStatusButton(id);
-        GoingToReadBookStatusButton goingToReadBookStatusButton = new GoingToReadBookStatusButton(id);
-        NoStatusBookStatusButton noStatusBookStatusButton = new NoStatusBookStatusButton(id);
-
-        switch (bookStatus) {
-        case GOING_TO_READ:
-            goingToReadBookStatusButton.setActive();
-            break;
-        case NO_STATUS:
-            noStatusBookStatusButton.setActive();
-            break;
-        case READ:
-            alreadyReadBookStatusButton.setActive();
-            break;
-        case READING:
-            readingBookStatusButton.setActive();
-            break;
-        }
-
-        buttons.getChildren().addAll(alreadyReadBookStatusButton, readingBookStatusButton, goingToReadBookStatusButton,
-                noStatusBookStatusButton);
+        BookStatusMenu buttons = new BookStatusMenu();
+        buttons.getChildren().forEach(n -> {
+            BookStatusButton bookStatusButton = (BookStatusButton) n;
+            if (bookStatusButton.getStatus() == bookStatus) {
+                bookStatusButton.getStyleClass().add("active");
+                bookStatusButton.setDisable(true);
+            }
+            n.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+                CatalogService.getInstance().updateBookStatus(id, bookStatusButton.getStatus());
+                booksController.refresh();
+            });
+        });
 
         return buttons;
     }
 
     private ImageView buildImage(String cover) {
         Image image = new Image(getClass().getResourceAsStream("default-cover.png"));
-        if (cover != null) {
-            TaskUtil.runTask(new LoadCoverTask(getId(), cover));
-        }
         ImageView view = new ImageView(image);
         view.setId("cover-" + getId());
         view.getStyleClass().add("cover");
         view.setFitHeight(128);
         view.setFitWidth(85);
+        if (cover != null) {
+            LoadCoverTask loadCoverTask = new LoadCoverTask(getId(), cover);
+            loadCoverTask.setOnSucceeded(event -> {
+                try {
+                    Image loadedCover = loadCoverTask.get();
+                    view.setImage(loadedCover);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            });
+            TaskUtil.runTask(loadCoverTask);
+        }
         return view;
     }
 

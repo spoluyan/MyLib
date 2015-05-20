@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+
+<?import pw.spn.mylib.ui.component.MenuButton?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="pw.spn.mylib.ui.controller.MenuController">
+	<children>
+		<MenuButton fx:id="goingToReadMenuButton" text="%going-to-read" label="%going-to-read" styleClass="menu-button, active" state="GOING_TO_READ" GridPane.columnIndex="0" />
+		<MenuButton fx:id="readingMenuButton" text="%reading" label="%reading" styleClass="menu-button" state="READING" GridPane.columnIndex="1" />
+		<MenuButton fx:id="readMenuButton" text="%read" label="%read" styleClass="menu-button" state="READ" GridPane.columnIndex="2" />
+		<MenuButton fx:id="searchMenuButton" text="%loading" styleClass="menu-button" disable="true" state="SEARCH" GridPane.columnIndex="3" />
+	</children>
+</GridPane>
+

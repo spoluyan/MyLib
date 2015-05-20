@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane fx:id="books" alignment="CENTER" fx:controller="pw.spn.mylib.ui.controller.BooksController" xmlns:fx="http://javafx.com/fxml/1" >
+</GridPane>
+

@@ -24,6 +24,8 @@ public class CatalogService {
     private Set<Book> localLibrary;
     private File localLibraryFile;
 
+    private boolean isRemoteCatalogLoaded;
+
     private CatalogService() {
         parserService = ParserService.getInstance();
         localLibraryFile = new File(Config.getConfig().getLocalLibraryFileName());
@@ -71,6 +73,7 @@ public class CatalogService {
     public Set<Book> getRemoteLibrary() {
         if (remoteLibrary == null) {
             remoteLibrary = parserService.loadRemoteCatalog();
+            isRemoteCatalogLoaded = true;
         }
         return remoteLibrary;
     }
@@ -118,5 +121,9 @@ public class CatalogService {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public boolean isRemoteCatalogLoaded() {
+        return isRemoteCatalogLoaded;
     }
 }

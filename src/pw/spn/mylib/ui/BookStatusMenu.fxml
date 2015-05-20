@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import pw.spn.mylib.ui.component.BookStatusButton?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="HBox" spacing="10">
+	<children>
+		<BookStatusButton text="%read" status="READ" styleClass="status-button" />
+		<BookStatusButton text="%reading" status="READING" styleClass="status-button" />
+		<BookStatusButton text="%going-to-read" status="GOING_TO_READ" styleClass="status-button" />
+		<BookStatusButton text="%del" status="NO_STATUS" styleClass="status-button" />
+	</children>
+</fx:root>
+

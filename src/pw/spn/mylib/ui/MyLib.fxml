@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane id="root" fx:controller="pw.spn.mylib.ui.controller.MainController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <GridPane BorderPane.alignment="CENTER" id="content">
+         <BorderPane.margin>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </BorderPane.margin>
+         <children>
+            <fx:include source="Menu.fxml" fx:id="menu"  />
+            <ScrollPane GridPane.columnSpan="4" GridPane.rowIndex="1" id="scroll">
+               <content>
+                  <fx:include source="Books.fxml" fx:id="booksPane" />
+               </content>
+            </ScrollPane>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
+

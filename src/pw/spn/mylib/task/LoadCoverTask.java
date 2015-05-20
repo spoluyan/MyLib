@@ -6,15 +6,12 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.image.Image;
 
 import org.apache.commons.io.IOUtils;
 
-import pw.spn.mylib.util.UIUtil;
-
-public class LoadCoverTask extends Task<Void> {
+public class LoadCoverTask extends Task<Image> {
     private static final Map<String, Image> imagesCache = new HashMap<>();
 
     private String id;
@@ -26,10 +23,9 @@ public class LoadCoverTask extends Task<Void> {
     }
 
     @Override
-    protected Void call() throws Exception {
+    protected Image call() throws Exception {
         Image image = loadImage();
-        Platform.runLater(() -> UIUtil.updateCover(id, image));
-        return null;
+        return image;
     }
 
     private Image loadImage() throws IOException {
