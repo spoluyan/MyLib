@@ -1,4 +1,4 @@
-MyLib
+MyLib Java FX implementation
 =====
 
 Book tracker.
