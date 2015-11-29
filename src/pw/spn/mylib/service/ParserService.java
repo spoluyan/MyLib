@@ -29,8 +29,8 @@ import pw.spn.mylib.domain.Book;
 public class ParserService {
     private static final ParserService INSTANCE = new ParserService();
 
-    private static final String CATALOG_URL = "http://www.flibusta.net/catalog/catalog.zip";
-    private static final String BOOK_URL = "http://flibusta.net/b/";
+    private static final String CATALOG_URL = Config.getConfig().getFlibustaURL() + "/catalog/catalog.zip";
+    private static final String BOOK_URL = Config.getConfig().getFlibustaURL() + "/b/";
 
     private static final String SEPARATOR = ";";
     private static final String COVER_TEXT = "Cover image";

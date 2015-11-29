@@ -22,6 +22,7 @@ public final class Config {
     private final String appLanguage;
     private final int searchLimit;
     private final int minSearchQueryLength;
+    private final String flibustaURL;
 
     private Config() {
         properties = loadPropertiesFromFile();
@@ -33,6 +34,7 @@ public final class Config {
         appLanguage = properties.getProperty("app.lang", "ru");
         searchLimit = loadIntProperty("search.limit", 20);
         minSearchQueryLength = loadIntProperty("search.min-query-length", 3);
+        flibustaURL = properties.getProperty("flibusta.url", "http://flibusta.is");
     }
 
     private Set<String> loadSetProperty(String propertyKey, String defaultValue) {
@@ -114,5 +116,9 @@ public final class Config {
 
     public int getMinSearchQueryLength() {
         return minSearchQueryLength;
+    }
+
+    public String getFlibustaURL() {
+        return flibustaURL;
     }
 }
